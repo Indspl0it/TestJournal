@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div id="journal-entry">
+        <h1>New Journal Entry</h1>
+        <form action="{{ url_for('journal_routes.create_journal_entry') }}" method="post">
+            {{ journal_form.hidden_tag() }}
+            <p>
+                {{ journal_form.date.label }}<br>
+                {{ journal_form.date(size=32) }}
+            </p>
+            <p>
+                {{ journal_form.entry.label }}<br>
+                {{ journal_form.entry(rows=5) }}
+            </p>
+            <p>
+                {{ journal_form.mood.label }}<br>
+                {{ journal_form.mood() }}
+            </p>
+            <p>
+                {{ journal_form.image.label }}<br>
+                {{ journal_form.image() }}
+            </p>
+            <p>{{ journal_form.submit() }}</p>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

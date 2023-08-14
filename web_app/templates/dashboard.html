@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+</head>
+<body>
+    <div id="dashboard">
+        <h1>Welcome, {{ current_user.username }}</h1>
+        <h2>Your Mood Analysis</h2>
+        <div id="mood-chart"></div>
+        <h2>Your Sentiment Analysis</h2>
+        <div id="sentiment-chart"></div>
+        <h2>Your Journal Entries</h2>
+        <div id="journal-entries">
+            {% for entry in journal_entries %}
+                <div class="entry">
+                    <h3>{{ entry.title }}</h3>
+                    <p>{{ entry.content }}</p>
+                    <p><strong>Mood:</strong> {{ entry.mood }}</p>
+                    <img src="{{ url_for('static', filename='images/' + entry.image) }}" alt="Journal Entry Image">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        // Load the mood and sentiment charts
+        loadMoodChart();
+        loadSentimentChart();
+    </script>
+</body>
+</html>
