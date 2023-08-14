@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div id="mood-form">
+        <h2>Track Your Mood</h2>
+        <form action="{{ url_for('mood_routes.track_mood') }}" method="post">
+            <label for="mood">Mood:</label>
+            <select name="mood" id="mood">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+                <option value="neutral">Neutral</option>
+                <option value="excited">Excited</option>
+            </select>
+            <input type="submit" value="Track Mood">
+        </form>
+        {% if mood_message %}
+            <p class="message">{{ mood_message }}</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
